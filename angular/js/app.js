@@ -1,12 +1,5 @@
 'use strict';
 
-window.setupFrame = function(APIKey, parentID){
-    window.APIKey = APIKey;
-    window.parentID = parentID;
-    console.log(APIKey, parentID)
-}
-    
-    console.log('i have been setup')
      // Declare app level module which depends on filters, and services
     angular.module('myApp', [
       'ngSanitize',
@@ -21,15 +14,13 @@ window.setupFrame = function(APIKey, parentID){
             //$rootScope.$broadcast( 'onYouTubePlayerAPIReady' );
         };
     })
-    .controller('MainCtrl', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
-        function _tellParent(data){
+    .controller('MainCtrl', ['$scope', '$rootScope', '$http', 'APIKey', 'data', function($scope, $rootScope, $http) {
+        function _notifyParent(key, data, height){
             
         };
         $scope.r = false;
-        $rootScope.youtubeReady.promise.then(function(){
-           $scope.fetch();
-         })
-         $scope.fetch = function(id){
+        
+         $scope.fetch = $rootScope.youtubeReady.promise.then(function(id){
             var baseURL = 'https://www.googleapis.com/youtube/v3',
                 resource = '/videos?',
                 parts = 'part=' + encodeURIComponent( 'id,contentDetails,player,snippet' );
@@ -42,7 +33,7 @@ window.setupFrame = function(APIKey, parentID){
               // called asynchronously if an error occurs
               // or server returns response with an error status.
             });
+          })
          }
-        
     }])
 
