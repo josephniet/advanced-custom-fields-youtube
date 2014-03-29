@@ -23,6 +23,7 @@
 		}
 		var iframe = $('iframe[data-key=' + key + ']');
 		var fd = iframe[0].contentWindow || $f[0]; // document of iframe
+		iframe.height = ($(fd.document).find('#myApp').height())
 		fd.setupFrame('AIzaSyBUi36u48h1eFld14jwUajKKpiI61UMyDM', key, data)
 	}
 </script>

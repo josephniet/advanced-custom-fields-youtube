@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="css/main.css"/>
 </head>
 <body>
+    TvyWRevLG5I
+    RubBzkZzpUA
       <div class="youtube-fetcher" id="myApp" ng-controller="MainCtrl">
             <div class="controls">
                <input type="text" ng-model="vidID" class="youtube-id" placeholder="Video ID, ie: RubBzkZzpUA"/>
@@ -13,23 +15,26 @@
                 <div class="button remove-video" title="remove this video" ng-click="r = null">✕</div>
             </div>
             <div class="notification"></div>
-            <div class="response" ng-if="r" ng-init="s = r.snippet">
-                <h1 class="video-title">{{s.title}}</h1>
+            <title>index</title>
+            <div class="response" ng-if="r">
+                <h1 class="video-title">{{r.snippet.snippet.title}}</h1>
                 <a class="video-preview" ng-href="http://www.youtube.com/watch?v={{r.id}}" target="_blank">
-                 <img class="video-thumbnail" ng-src="{{s.thumbnails.high.url}}"/>
+                 <img class="video-thumbnail" ng-src="{{r.snippet.thumbnails.high.url}}"/>
                 </a>
-                <p class="video-description">{{s.description}}</p>              
+                <p class="video-description">{{r.snippet.description}}</p>              
             </div>
         </div>
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/angular/angular.min.js"></script>
   <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
   <script src="js/app.js"></script>
   <script>
   window.setupFrame = function(APIKey, parentID, data){
-        window.APIKey = APIKey;
-        window.parentID = parentID;
-        window.data = data;
-        angular.bootstrap($('#myApp')[0], ['myApp', 'constants']);
+        angular.module('Constants', [])
+        .constant('data', data)
+        .constant('parentID', parentID)
+        .constant('APIKey', APIKey);
+        angular.bootstrap($('#myApp')[0], ['myApp', 'Constants']);
     }
   </script>
 </body>
