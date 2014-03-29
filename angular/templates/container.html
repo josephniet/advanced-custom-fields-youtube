@@ -1,0 +1,15 @@
+<div class="youtube-fetcher">
+    <div class="controls">
+	   <input type="text" class="youtube-id" placeholder="Video ID, ie: RubBzkZzpUA"/>
+	   <div class="youtube-fetcher-submit button" title="Fetch youtube video from ID">Fetch</div>
+        <div class="button remove-video" title="remove this video" ng-click="r = null">✕</div>
+    </div>
+    <div class="notification"></div>
+	<div class="response" ng-if="r">
+        <h1 class="video-title">{{r.title}}</h1>
+        <div class="video-preview" href="http://www.youtube.com/watch?v={{r.id}}" target="_blank">
+        <img class="video-thumbnail" src="r.thumbnails.high.url"/>
+        </div>
+        <p class="video-description">{{r.description}}</p>      	    
+	</div>
+</div>

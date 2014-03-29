@@ -1,0 +1,106 @@
+.youtube-fetcher {
+  text-align: center;
+  background: #e7e7e7;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 0.3em;
+  margin: 2em 1em  ;
+  box-shadow: 0px 3px 10px -4px;
+}
+.youtube-fetcher .video-title {
+  font-size: 1.3em;
+}
+.youtube-fetcher .youtube-id {
+  float: left;
+}
+.youtube-fetcher .youtube-fetcher-submit {
+  float: left;
+}
+.youtube-fetcher .notification {
+  display: none;
+  background-color: #519bb8;
+  color: #f3f3f3;
+  padding: 1em;
+}
+.youtube-fetcher .response {
+  text-align: left;
+  padding: 0.5em 1em;
+  background-color: #FAFAFA;
+  border-top: 1px solid #FF054B;
+  overflow: hidden;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.youtube-fetcher .response .video-preview {
+  cursor: pointer;
+  display: inline-block;
+  background-color: #000;
+  float: right;
+  margin: 0 0 1em 1em;
+  width: 50%;
+}
+.youtube-fetcher .response .video-preview iframe {
+  width: 100%;
+}
+.youtube-fetcher .response .video-preview .video-thumbnail {
+  width: 100%;
+  height: auto;
+}
+.youtube-fetcher .response .video-preview .video-thumbnail:hover {
+  opacity: 0.9;
+}
+.youtube-fetcher .controls {
+  overflow: hidden;
+  position: relative;
+  padding: 1em;
+  text-align: right;
+  background: #e6e6e6;
+  /* Old browsers */
+
+  background: -moz-linear-gradient(top, #e6e6e6 0%, #d3d3d3 100%);
+  /* FF3.6+ */
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e6e6e6), color-stop(100%, #d3d3d3));
+  /* Chrome,Safari4+ */
+
+  background: -webkit-linear-gradient(top, #e6e6e6 0%, #d3d3d3 100%);
+  /* Chrome10+,Safari5.1+ */
+
+  background: -o-linear-gradient(top, #e6e6e6 0%, #d3d3d3 100%);
+  /* Opera 11.10+ */
+
+  background: -ms-linear-gradient(top, #e6e6e6 0%, #d3d3d3 100%);
+  /* IE10+ */
+
+  background: linear-gradient(to bottom, #e6e6e6 0%, #d3d3d3 100%);
+  /* W3C */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6e6e6', endColorstr='#d3d3d3', GradientType=0);
+  /* IE6-9 */
+
+}
+.youtube-fetcher .controls .add-video,
+.youtube-fetcher .controls .remove-video {
+  position: absolute;
+  top: 0;
+  background: transparent;
+}
+.youtube-fetcher .controls .add-video {
+  color: #59aa22;
+  right: 2.5em;
+}
+.youtube-fetcher .controls .remove-video {
+  color: #f12222;
+  right: 0;
+}
+.youtube-fetcher.small .video-preview {
+  width: 100%;
+  float: none;
+  margin: 0;
+}
