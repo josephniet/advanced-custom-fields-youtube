@@ -14,14 +14,16 @@
             //$rootScope.$broadcast( 'onYouTubePlayerAPIReady' );
         };
     })
-    .controller('MainCtrl', ['$scope', '$rootScope', '$http', 'APIKey', 'data', 'parentID', function($scope, $rootScope, $http, APIKey, data, parentID) {
+    .controller('MainCtrl', ['$scope', '$rootScope', '$http', 'APIKey', 'data', 'parentID', '$timeout', function($scope, $rootScope, $http, APIKey, data, parentID, $timeout) {
         function _notifyParent(data){
             window.top.acfYoutubeRead(parentID, data, $('#myApp').height() )
         };
         $scope.r = data || false;
         $scope.$watch('r', function(val){
-            if (!val) return;
-            _notifyParent(val)
+           // if (!val) return;
+            $timeout(function(){
+                _notifyParent(val)
+            },500)  
         })        
         
          $scope.fetch = function(id){
