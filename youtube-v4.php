@@ -95,8 +95,9 @@ class acf_field_youtube extends acf_field
 			//$field['value'] = json_decode($json);
 		//}
 			// create Field HTML
+		$dir = apply_filters('acf/helpers/get_dir', __FILE__);
 		echo "<div>";
-		echo sprintf( '<iframe class="acf-youtube" onload="acfYoutubeInitFrame(\'%2$s\')" data-key="%2$s" src="%1$s"></iframe>', plugin_dir_url( __FILE__ ) . '/angular/index.html', $field['key']);			
+		echo sprintf( '<iframe class="acf-youtube" onload="acfYoutubeInitFrame(\'%2$s\')" data-key="%2$s" src="%1$s"></iframe>', $dir . '/angular/index.html', $field['key']);			
 		echo sprintf( '<input type="hidden" id="%d" class="%s" name="%s" value="%s" placeholder="%s" data-key="%s">', $field['id'], $field['class'], $field['name'], $field['value'], $field['value'],  $field['key']  );			
 		//echo sprintf( '<input type="text" id="%d" class="%s" name="%s" value="%s" data-key="%s">', $field['id'], $field['class'], $field['name'], $field['value'], $field['key']  );
 		echo "</div>";
