@@ -2,8 +2,13 @@
 
      // Declare app level module which depends on filters, and services
     angular.module('myApp', [
-      'ngSanitize'
-    ]).run(function($document, $rootScope, $q, $window){
+      'ngSanitize',
+      'ntYoutubeFetch'
+    ]);
+    
+    angular.module('ntYoutubeFetch', [
+    ])
+    .run(function($document, $rootScope, $q, $window){
         var tag = $document[0].createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = $document[0].getElementsByTagName( 'script' )[0];
@@ -14,7 +19,7 @@
             //$rootScope.$broadcast( 'onYouTubePlayerAPIReady' );
         };
     })
-    .controller('MainCtrl', ['$scope', '$rootScope', '$http', 'APIKey', 'data', 'parentID', '$timeout', function($scope, $rootScope, $http, APIKey, data, parentID, $timeout) {
+    .controller('ntYoutubeFetch', ['$scope', '$rootScope', '$http', 'APIKey', 'data', 'parentID', '$timeout', function($scope, $rootScope, $http, APIKey, data, parentID, $timeout) {
         function notifyParent(data){
             window.top.acfYoutubeRead(parentID, data, $('#myApp').height() );
         }
