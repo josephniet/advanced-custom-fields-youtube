@@ -1,28 +1,29 @@
 <link rel="stylesheet" href="<?php echo  plugin_dir_url( __FILE__ ); ?>/css/main.css" />
 <script type="text/javascript">
-	window.acfYoutubeRead = function(key, data, height){
-		var $ = jQuery;
-		var input = $('input' + '[data-key=' + key + ']');
-		var iframe = $('iframe[data-key=' + key + ']');
-		//console.log('put into', input);
-		iframe.height(height)
+window.acfYoutubeInit = function(iframe){
+	var $ = jQuery,
+	input = $(iframe).siblings('input'),
+	target = iframe.contentWindow.ntYoutubeFetch,
+	sanitized;
+	target.callback = function(data){
 		var sanitized = encodeURIComponent( JSON.stringify(data) );
-		input.val(sanitized).attr('value', sanitized);
+		input.val(sanitized);
+		$(iframe).height(target.getHeight());
 	}
-	window.acfYoutubeInitFrame = function(key){
-		var $ = jQuery;
-		var input =  $('input' + '[data-key=' + key + ']');
-		var data = input.val();
-		try
-		{
-		   data = JSON.parse(decodeURIComponent( input.val() ) )
-		}
-		catch(e)
-		{
-		   data = null;
-		}
-		var iframe = $('iframe[data-key=' + key + ']');
-		fd = iframe[0].contentWindow || $f[0]; // document of iframe
-		fd.setupFrame('AIzaSyBUi36u48h1eFld14jwUajKKpiI61UMyDM', key, data)
-	}
+	target.APIKey = 'AIzaSyBUi36u48h1eFld14jwUajKKpiI61UMyDM';
+	try
+	  {
+	  sanitized = JSON.parse(decodeURIComponent(input.val()));
+	  }
+	catch(err)
+	  {
+	  	console.log('error', err, input.val(), 'x');
+	  sanitized = '';
+	  }
+	target.r = sanitized;
+	window.t = target;
+	target.$apply();//FIXME: smells like a kludge.
+	$(iframe).height(target.getHeight());
+}
+
 </script>

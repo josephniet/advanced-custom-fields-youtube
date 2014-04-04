@@ -19,15 +19,31 @@
             //$rootScope.$broadcast( 'onYouTubePlayerAPIReady' );
         };
     })
-    .controller('ntYoutubeFetch', ['$scope', '$rootScope', '$http', 'APIKey', 'data', 'parentID', '$timeout', function($scope, $rootScope, $http, APIKey, data, parentID, $timeout) {
-        function notifyParent(data){
-            window.top.acfYoutubeRead(parentID, data, $('#myApp').height() );
-        }
-        $scope.r = data || false;
+    .value('ntYoutubeConfig', {
+        data : null,
+        APIKey : 'AIzaSyBUi36u48h1eFld14jwUajKKpiI61UMyDM'
+    })
+    .controller('ntYoutubeFetch', ['$scope', '$rootScope', '$http', '$timeout', 'ntYoutubeConfig', function($scope, $rootScope, $http, $timeout, ntYoutubeConfig) {
+        window.ntYoutubeFetch = $scope;
+        $scope.getHeight = function(){
+            return $('#myApp').height();
+        };
+        $scope.r = ntYoutubeConfig.data;//initialize;
+        $scope.APIKey = ntYoutubeConfig.APIKey;
+        $scope.update = {
+            data : function(data){
+                $scope.r = data;
+            },
+            APIKey : function(key){
+                $scope.APIKey = key;
+            }
+        };
         $scope.$watch('r', function(val){
            // if (!val) return;
             $timeout(function(){
-                notifyParent(val);
+                if (typeof $scope.callback === "function"){
+                   $scope.callback(val);
+                }
             }, 500);
         });      
         
@@ -36,7 +52,7 @@
                 var baseURL = 'https://www.googleapis.com/youtube/v3',
                     resource = '/videos?',
                     parts = 'part=' + encodeURIComponent( 'id,contentDetails,player,snippet' ),
-                    url = baseURL + resource + parts + '&id=' + id + '&key=' + APIKey;
+                    url = baseURL + resource + parts + '&id=' + id + '&key=' + $scope.APIKey;
                 $http({method: 'GET', url: url}).success(function(data, status, headers, config) {
                     //console.log('data!', data);
                     $scope.r = data.items[0];
